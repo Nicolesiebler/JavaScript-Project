@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+}
+
+.froggy {
+    position: absolute;
+}
+
+.froggy .froggy-speak {
+    position: relative;
+    left: 40px;
+    top: 10px;
+}
+
+.froggy .froggy-sprite {
+}
+
+.froggy .froggy-contextmenu {
+    display: none;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+}
