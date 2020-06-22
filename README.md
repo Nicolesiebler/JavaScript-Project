@@ -44,7 +44,7 @@ In the `styles/styles.css` file, modify the `body` styles:
 
 2. Set the `width` to 100 `vw` (100% viewport width)
 
-3. Set the `height` to 100 `vj` (100% viewport height)
+3. Set the `height` to 100 `vh` (100% viewport height)
 
 ### Assignment 2 - Preparing our froggy
 
