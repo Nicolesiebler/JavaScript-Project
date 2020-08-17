@@ -1,23 +1,201 @@
-body {
+.page {
     margin: 0;
-}
-
-.froggy {
-    position: absolute;
-}
-
-.froggy .froggy-speak {
+    width: 100vw;
+    height: 120vh;
     position: relative;
-    left: 40px;
-    top: 10px;
 }
 
-.froggy .froggy-sprite {
+.page::after {
+   content: "";
+   background-image: url(/images/audience-1866738_1920.jpg); 
+   background-repeat: no-repeat;
+   background-size: cover;
+   opacity: 0.2;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   position: absolute;
+   z-index: -1;  
+
+}
+.flyingfootball{
+    background: url(/images/football-157930_1280.png) repeat-x;
+    width: 100%;
+    height: 70px;
+    background-size: 2%;
+    animation: footballfly 30s linear infinite;
+}
+@keyframes footballfly{
+	from { background-position: 0%}
+	to { background-position: 100%}
+}
+.player{
+    display: flex;
+}
+.container-addplaylist{
+    background-color: #008000;
+    color:  rgb(51, 50, 50);
+    width: 31vw;
+    height: 60vh;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+.h2addplayer{
+    font-size: 40px;
+    text-align: left;
+    margin: 20px ;
+}
+.form input{
+    background-color: rgb(194, 190, 190) ;
+    border: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    font-style: italic;
+}
+.form-player{
+    width: 28vw;
+    height: 6vh;
+    color: dark-gray;
+    display: flex;
+    justify-content: space-between;
+   
+}
+.form-label{
+    width: 30%;
+    padding: 12px;
+    margin-top: 6px;
+    font-size: 20px;
+    font-weight: bold ;
+}
+.form-input{
+    width: 70%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgb(194, 190, 190);
+}
+.button{
+    width: 10vw;
+    height: 5vh;
+    color:#008000;
+    background-color: gray;
+    margin-left: 200px; 
+    margin-top: 50px;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: bold ;
+}
+.button:hover {
+    background-color: #45a049;
+    cursor: pointer;
 }
 
-.froggy .froggy-contextmenu {
+/* style PlayList */
+.container-playlist{
+    width: 69vw;
+    height: 100vh;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+.header-playerlist{
+    font-size: 40px;
+    margin-top: 0px;
+    color:  rgb(55, 55, 55);
+    text-align: left;
+    margin: 10px ;
+    margin-bottom: 30px;
+}
+.button-player{
+    width: 150px;
+    height: 20px;
+    margin-left: 5px ;
+    background-color: #008000;
+    color: lightgray;
+    border-radius: 10px;
+}
+.list-playerlist{     
+    color: dark-gray;
+}
+.list-player{
+    list-style-type: none;
+    text-align: left;
+    font-size: 25px;
+    font-weight: bold ;
+    color:  rgb(55, 55, 55);
+    margin: 25px 0px 25px;
+}
+
+/* style Modal / Dialog box */
+.modal {
     display: none;
-    background-color: white;
-    border: 1px solid black;
-    color: black;
-}
+    position: fixed; 
+    padding-top: 50px;
+    left: 0; 
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .modal-content {
+    position: relative; 
+    background-color: lightgray;
+    padding: 60px; 
+    margin: auto; 
+    width: 50%;  
+    height: 60%;
+    font-size: 20px;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+  @keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  .p-modal-content{
+      font-size: 35px;
+      color: #008000;
+  }
+  .close-btn {
+    float: right; 
+    color: red; 
+    font-size: 24px;  
+    font-weight: bold;
+  }
+  .close-btn:hover {
+    color: darkgray;
+    cursor: pointer;
+  }
+  .modal-calendar{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    column-gap: 0px;
+    row-gap: 0px;
+  }
+  .button-calendar{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px ;
+    background-color: #008000;
+    border-radius: 10px;
+  }
+  .button-calendar:hover {
+    cursor: pointer;
+    background-color: red;
+  }
+  .pofdate{
+      width: 130px;
+      height: 70px;
+      margin: 0;
+      color:  #008000;
+      border: 1px solid;
+      background-color: gray;
+  }
+  .pofcontent{
+      color: red;
+      font-size: 14px;
+      text-align: center;
+  }

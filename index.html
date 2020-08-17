@@ -4,15 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/styles.css">
-    <title>Click Froggy!</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <title><JavaScript-Project></title>
 </head>
-<body>
-    <div class="froggy">
-        <p class="froggy-speak">Ribbbit!</p>
-        <div class="froggy-sprite"></div>
-        <div class="froggy-contextmenu">
-            <p>This frog is copyright of Froggy Industries Inc.</p>
-        </div>
+
+<body class="page">
+
+  <div class="flyingfootball"></div>
+
+  <main class= "player">
+    
+      <div class="container-addplaylist">
+        
+        <h2 class= "h2addplayer">Add Player:</h2>
+
+        <form class="form">
+
+          <div class="form-player">
+            <div class="form-label">
+            <label for="Nachname">Name</label>
+            </div>
+            <div class="form-input" >
+            <input class= "inputinside" type="text" name="name" placeholder="Players lastname">
+            </div>
+          </div>
+
+          <div class="form-player">
+            <div class="form-label">
+            <label for="Vorname">Firstname</label>
+            </div>
+            <div class="form-input">
+            <input type="text" name="firstname"  placeholder="Players firstname">
+            </div>
+          </div>
+          <div class="form-player">
+            <div class="form-label">
+            <label for="Geburtsjahr">Year of birth</label>
+            </div>
+            <div class="form-input">
+            <input type="text" name="birthyear"  placeholder="Year of birth">
+            </div>
+          </div>
+          <div class="form-player">
+            <div class="form-label">
+            <label for="Position">Position</label>
+            </div>
+            <div class="form-input">
+            <input type="text" name="position"  placeholder="Position">
+            </div>
+          </div>
+          <div class="form-player">
+            <div class="form-label">
+            <label for="Important">Important</label>
+            </div>
+            <div class="form-input">
+            <input type="text" name="importantmessage"  placeholder="Same important stuff">
+            </div>
+          </div>
+          
+          <button type="submit" class="button">Add Player</button>
+        </form>   
+       
+      </div>
+
+
+      <div class="container-playlist">
+
+         <div>
+            <h2 class="header-playerlist"><i class="fas fa-futbol"></i>PlayerList</h2>
+            <ul class="list-playerlist">
+              <li class="list-player"></li>
+            </ul>
+        </div> 
+
+         
+        <!-- <table class="table-playerstatistic">
+            <tr class="addtable">
+              <th>Name</th>
+              <th>Firstname</th>
+              <th>Date of Birth</th>
+              <th>Position</th>
+              <th>Important</th>
+              <th>Date</th>
+            </tr>
+        </table> -->
+
+      </div>
+  </main>
+
+  <div class= "popup">
+    <div class="modal">
+      <div class="modal-content"> 
+        <span class="close-btn">&times;</span>
+        <p class="p-modal-content">Calendar of trainings</p>
+      </div>
     </div>
+  </div>
+
+
+  <!-- <div class="flyingfootball"></div> -->
+  
+  <script src="js/app.js"></script>
 </body>
 </html>
