@@ -1,5 +1,6 @@
 let players = [];
 let months = generateCalendarDates(2020);
+let playerTrainings = {};
 const form = document.querySelector('.form');
 
 function generateCalendarDates(year) {
@@ -16,22 +17,25 @@ function generateCalendarDates(year) {
 }
 
 try {
-       if (localStorage.getItem('players') == null) {
-        localStorage.getItem('players') = JSON.stringify(localStorage.getItem('players'));
-        const storagePlayer = JSON.parse(localStorage.getItem('players'));
+    const storagePlayer = JSON.parse(localStorage.getItem('players'));
+    if (storagePlayer !== null){
         players = storagePlayer;
         players.forEach((player)=> {
-            addPlayerHtml(player)
-        })
-       }
-       else{
-        const storagePlayer = JSON.parse(localStorage.getItem('players'));
-        players = storagePlayer;
-        players.forEach((player)=> {
-            addPlayerHtml(player)
-    })};
+            addPlayerToList(player)
+        });
+    }
+
+    const storageplayerTrainings = JSON.parse(localStorage.getItem('playerTrainings'));
+    if (storageplayerTrainings !== null){
+        playerTrainings = storageplayerTrainings;
+    }
+
+    const months = JSON.parse(localStorage.getItem('months'));
+    if (storagemonths !== null){
+        months = storagemonths;
+    }
 } catch(error) {
-    
+    console.log('No data found!')
 }
 
 form.addEventListener('submit', function(event){
@@ -48,25 +52,25 @@ form.addEventListener('submit', function(event){
     };
 
     players.push(playerData);
-    addPlayerHtml(playerData);
+    addPlayerToList(playerData);
     form.reset();
 
     localStorage.setItem('players', JSON.stringify(players));
 });
 
-function addPlayerHtml(player) {
+function addPlayerToList(player) {
     const ul = document.querySelector('.list-playerlist');
     const li = document.createElement('li');
     li.setAttribute('data-playerid', player.id);
     li.className = 'list-player';
-    li.textContent= ` ${player.lastName} ${player.firstName} (${player.dateOfBirth}) (Player-ID:${player.id}) in September Nr. times in training`;
+    li.textContent= `${player.lastName} ${player.firstName} (${player.dateOfBirth}) (Player-ID:${player.id}) `;
     ul.appendChild(li);
-
     const btn = document.createElement('button');
     btn.className = 'button-player';
-    btn.textContent= `Add training-date`;
-    btn.addEventListener('click', setModalContent);
+    btn.textContent= `training-dates`;
     li.appendChild(btn);
+    btn.addEventListener('click', setModalContent);
+    
 }
 
 // Modal
@@ -83,33 +87,32 @@ function setModalContent(event){
         dayelement.className= 'pofdate';
         dayelement.textContent = index+1;
         calendarElement.appendChild(dayelement);
+
+        const playerInTrainings = day.includes(playerData.id);
         
-        const playerInTraining = day.includes(playerData.id);
-        console.log(playerInTraining);
-
-        localStorage.setItem('playerInTraining', JSON.stringify(playerInTraining));
-
         const calendarBtn = document.createElement('button');
         calendarBtn.className = 'button-calendar';
         dayelement.appendChild(calendarBtn);
         calendarBtn.addEventListener('click', function(){
-            months[8][index].push(playerData.id);
+            const playerId = playerData.id;
+            months[8][index].push(playerId);
             const daypush = document.createElement('p');
             daypush.className= 'pofcontent';
-            daypush.textContent = `${playerData.firstName} ${playerData.lastName} was in the training`;
+            daypush.textContent = `${playerData.firstName} ${playerData.lastName} was in training`;
             dayelement.appendChild(daypush);
-
-            if (playerInTraining == true){
-              countTraining();
-              console.log(inTraining)
+            
+            const playerTrainings = {
+                [playerId]: index+1
             }
+
+            console.log(playerTrainings);
+
+            // playerTrainings.push()
+            localStorage.setItem('playerTrainings', JSON.stringify(playerTrainings));
+            localStorage.setItem('months', JSON.stringify(months));
+            
         });
-        function countTraining(){
-        let inTraining = 0;
-        inTraining += 1;
-        calendarElement.innerHTML = inTraining;
-             
-        }
+        
     });
 }
 
@@ -121,6 +124,7 @@ const closeBtn = document.querySelector(".close-btn");
 closeBtn.addEventListener('click', function(){
     modal.style.display = "none";
     document.querySelector('.modal-calendar').remove();
+    
 });
 
 window.addEventListener('click', function(event){
@@ -129,10 +133,3 @@ window.addEventListener('click', function(event){
         document.querySelector('.modal-calendar').remove();
     }
 });
-
-// let result = 0;
-// if (playerInTraining == true){
-// result += result;
-// return result;
-// }
-// console.log(result);
