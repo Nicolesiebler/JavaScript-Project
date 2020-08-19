@@ -28,6 +28,10 @@ try {
     const storageplayerTrainings = JSON.parse(localStorage.getItem('playerTrainings'));
     if (storageplayerTrainings !== null){
         playerTrainings = storageplayerTrainings;
+        // playerTrainings.forEach((training)=> {
+        //     setModalContent(training)
+        // });
+
     }
 
     const months = JSON.parse(localStorage.getItem('months'));
@@ -63,7 +67,7 @@ function addPlayerToList(player) {
     const li = document.createElement('li');
     li.setAttribute('data-playerid', player.id);
     li.className = 'list-player';
-    li.textContent= `${player.lastName} ${player.firstName} (${player.dateOfBirth}) (Player-ID:${player.id}) `;
+    li.textContent= `${player.lastName} ${player.firstName} (${player.dateOfBirth}) [${player.position}] `;
     ul.appendChild(li);
     const btn = document.createElement('button');
     btn.className = 'button-player';
@@ -85,23 +89,33 @@ function setModalContent(event){
     months[8].forEach((day, index) => {
         const dayelement = document.createElement('div');
         dayelement.className= 'pofdate';
-        // dayelement.textContent = index+1;
+        calendarElement.appendChild(dayelement);
+
         const daynumber = document.createElement('p');
+        daynumber.className = 'daynumber';
+        daynumber.textContent = index+1;
+
         const daynotice = document.createElement('p');
+        daynotice.className = 'daynotice';
+
+        const calendarBtn = document.createElement('button');
+        calendarBtn.className = 'button-calendar';
+        dayelement.appendChild(calendarBtn);
+        
+        
+
         const playerInTrainings = day.includes(playerData.id);
         
         if (playerInTrainings){
             daynotice.textContent = `${playerData.firstName} ${playerData.lastName} was in training`
         };
-        
-        daynumber.textContent = index+1;
 
-        calendarElement.appendChild(dayelement);
         dayelement.append(daynumber, daynotice);
         
-        const calendarBtn = document.createElement('button');
-        calendarBtn.className = 'button-calendar';
-        dayelement.appendChild(calendarBtn);
+        // const calendarBtn = document.createElement('button');
+        // calendarBtn.className = 'button-calendar';
+        // dayelement.appendChild(calendarBtn);
+        
         calendarBtn.addEventListener('click', function(){
             const playerId = playerData.id;
             months[8][index].push(playerId);
@@ -114,12 +128,10 @@ function setModalContent(event){
                 [playerId]: index+1
             }
 
-            console.log(playerTrainings);
+            // console.log(playerTrainings);
 
-            // playerTrainings.push()
             localStorage.setItem('playerTrainings', JSON.stringify(playerTrainings));
             localStorage.setItem('months', JSON.stringify(months));
-            
         });
         
     });
