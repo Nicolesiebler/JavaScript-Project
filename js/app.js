@@ -83,12 +83,21 @@ function setModalContent(event){
     calendarElement.className = 'modal-calendar';
     modalContent.appendChild(calendarElement);
     months[8].forEach((day, index) => {
-        const dayelement = document.createElement('p');
+        const dayelement = document.createElement('div');
         dayelement.className= 'pofdate';
-        dayelement.textContent = index+1;
-        calendarElement.appendChild(dayelement);
-
+        // dayelement.textContent = index+1;
+        const daynumber = document.createElement('p');
+        const daynotice = document.createElement('p');
         const playerInTrainings = day.includes(playerData.id);
+        
+        if (playerInTrainings){
+            daynotice.textContent = `${playerData.firstName} ${playerData.lastName} was in training`
+        };
+        
+        daynumber.textContent = index+1;
+
+        calendarElement.appendChild(dayelement);
+        dayelement.append(daynumber, daynotice);
         
         const calendarBtn = document.createElement('button');
         calendarBtn.className = 'button-calendar';
