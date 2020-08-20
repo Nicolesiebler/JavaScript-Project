@@ -42,6 +42,7 @@ try {
     console.log('No data found!')
 }
 
+//Add Player to Playerlist
 form.addEventListener('submit', function(event){
     event.preventDefault();
 
@@ -77,8 +78,7 @@ function addPlayerToList(player) {
     
 }
 
-// Modal
-
+// Modal/Popup
 function setModalContent(event){
     const playerData = players[event.target.parentElement.dataset.playerid];
     console.log(playerData);
@@ -102,8 +102,6 @@ function setModalContent(event){
         calendarBtn.className = 'button-calendar';
         dayelement.appendChild(calendarBtn);
         
-        
-
         const playerInTrainings = day.includes(playerData.id);
         
         if (playerInTrainings){
@@ -111,10 +109,6 @@ function setModalContent(event){
         };
 
         dayelement.append(daynumber, daynotice);
-        
-        // const calendarBtn = document.createElement('button');
-        // calendarBtn.className = 'button-calendar';
-        // dayelement.appendChild(calendarBtn);
         
         calendarBtn.addEventListener('click', function(){
             const playerId = playerData.id;
@@ -127,8 +121,6 @@ function setModalContent(event){
             const playerTrainings = {
                 [playerId]: index+1
             }
-
-            // console.log(playerTrainings);
 
             localStorage.setItem('playerTrainings', JSON.stringify(playerTrainings));
             localStorage.setItem('months', JSON.stringify(months));
